@@ -1,9 +1,9 @@
 name: Auto FinOps Pipeline
 
-on:
-  workflow_dispatch:    # allows you to run manually
-  schedule:
-    - cron: "0 8 * * *" # runs every day at 8am UTC
+# on:
+#   workflow_dispatch:
+#   schedule:
+#     - cron: "0 8 * * *"
 
 jobs:
   finops:
@@ -11,6 +11,8 @@ jobs:
 
     env:
       AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     steps:
       - name: Checkout repo
@@ -19,7 +21,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.10
+          python-version: 3.11
 
       - name: Install dependencies
         run: |
@@ -27,16 +29,13 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run Budget Checker
-        run: python budget_checker_test.py
+        run: python AutoFinOps/budget_checker_test.py
 
       - name: Run Tag Checker
-        run: python tag_checker.py
+        run: python AutoFinOps/tag_checker.py
 
       - name: Upload HTML Dashboard to S3
         run: |
-          aws s3 cp index.html s3://autofinops-dashboard-3b10fbfa/index.html \
+          aws s3 cp AutoFinOps/index.html s3://autofinops-dashboard-3b10fbfa/index.html \
             --acl public-read \
             --content-type text/html
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
