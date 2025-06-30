@@ -36,6 +36,6 @@ jobs:
 
       - name: Upload HTML Dashboard to S3
         run: |
-          aws s3 cp index.html s3://autofinops-dashboard-3b10fbfa/index.html \
+          aws s3 cp AutoFinOps/index.html s3://autofinops-dashboard-3b10fbfa/index.html \
             --acl public-read \
             --content-type text/html
