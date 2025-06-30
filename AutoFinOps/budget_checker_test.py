@@ -6,10 +6,10 @@ from discord_webhook import DiscordWebhook
 # =========================================
 
 # Put your real Discord webhook URL here
-DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1389261209106387149/lY3q917Q2jfkLoS0uC4wqzHjmupPrtGkUy0gtbbJz_0TuJatlbyNVv2kquxEMCQA88cd'
+DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/yourwebhook/yourid'
 
 # Change this to simulate different costs
-COST = 0.73
+COST = 1.25
 
 # Threshold for sending an alert
 THRESHOLD = 0.80
