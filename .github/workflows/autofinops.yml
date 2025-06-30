@@ -27,10 +27,10 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run Budget Checker
-        run: python autofinops/budget_checker_test.py
+        run: python AutoFinOps/budget_checker_test.py
 
       - name: Run Tag Checker
-        run: python autofinops/tag_checker.py
+        run: python AutoFinOps/tag_checker.py
 
       - name: Upload HTML Dashboard to S3
         run: |
