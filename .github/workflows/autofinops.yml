@@ -1,9 +1,9 @@
 name: Auto FinOps Pipeline
 
 on:
-  workflow_dispatch:    # allows you to run manually
+  workflow_dispatch:
   schedule:
-    - cron: "0 8 * * *" # runs every day at 8am UTC
+    - cron: "0 8 * * *"
 
 jobs:
   finops:
@@ -11,6 +11,8 @@ jobs:
 
     env:
       AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     steps:
       - name: Checkout repo
@@ -37,6 +39,3 @@ jobs:
           aws s3 cp index.html s3://autofinops-dashboard-3b10fbfa/index.html \
             --acl public-read \
             --content-type text/html
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
