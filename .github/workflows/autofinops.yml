@@ -19,7 +19,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.10
+          python-version: 3.11
 
       - name: Install dependencies
         run: |
@@ -27,10 +27,10 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run Budget Checker
-        run: python budget_checker_test.py
+        run: python AutoFinOps/budget_checker_test.py
 
       - name: Run Tag Checker
-        run: python tag_checker.py
+        run: python AutoFinOps/tag_checker.py
 
       - name: Upload HTML Dashboard to S3
         run: |
