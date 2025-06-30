@@ -23,7 +23,7 @@ def check_cost():
     if amount > 0.80:
         message = f"⚠️ AWS cost alert! Your usage is ${amount:.2f} this month."
         webhook = DiscordWebhook(
-            url='https://discord.com/api/webhooks/1389261209106387149/lY3q917Q2jfkLoS0uC4wqzHjmupPrtGkUy0gtbbJz_0TuJatlbyNVv2kquxEMCQA88cd',
+            url='https://discord.com/api/webhooks/yourwebhook/yourid',
             content=message
         )
         webhook.execute()
